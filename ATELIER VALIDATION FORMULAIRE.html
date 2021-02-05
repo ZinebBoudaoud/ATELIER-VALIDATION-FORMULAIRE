@@ -1,0 +1,110 @@
+<h1><!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Atelier Validation Formulaire</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+    <script>
+        function afficher(){
+            var ch1=document.querySelector("#r1");
+            var dg1=document.querySelector("#dg1");
+            if (r1.checked==true){
+                dg1.style.display="block";
+            }
+            if (r1.checked==false){
+                dg1.style.display="none";
+            } 
+           
+        }
+        function Nonafficher(){
+            var ch1=document.querySelector("#r2");
+            var dg1=document.querySelector("#dg1");
+            if (r2.checked==true){
+                dg1.style.display="none";
+            }
+            if (r2.checked==false){
+                dg1.style.display="block";
+            } 
+           
+        }
+        function verifier(){
+            var ifr = document.querySelector("#ifr"); 
+            var d1 = document.querySelector("#d1");
+            if (ifr.value == ""){
+                d1.innerHTML = "Veuillez donner votre Nom";
+                d1.style.color="red" 
+                return;
+            }
+            if (ifrp.value == ""){
+                d1.innerHTML = "Veuillez donner un password";
+                d1.style.color="red" 
+                return;
+            }
+            let rg=/[a-z]+$/g;
+            if (rg.test (ifr.value) == false){
+                d1.innerHTML = "Le nom ne doit pas contenir de chiffre ou caractères spéciaux"; 
+                d1.style.color = "red";
+                return;
+            }
+            let s1 = document.querySelector("#s1");
+            if (r1.checked==true){
+            let s=s1.selectedIndex;
+             if (s==0){
+                d1.innerHTML = "Veuillez selectionner une ville";
+                d1.style.color="red"
+                return;
+             }
+                
+            }
+            d1.innerHTML="Toutes vos informations sont remplis correctement !";
+            d1.style.color="green";
+        
+        }
+    </script>
+    <style> 
+        .dg1{
+            border-color: blue;
+            background-color:red;
+            display: none; /*chacher div au début*/
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Atelier Validation Formulaire</h1>
+    <form>
+        <label>
+            Nom :
+        </label>
+        <input type="text" id="ifr" name="ifrm" required >
+        <span>(*)</span>
+    <br/> 
+        <label>
+         Password :
+        </label>
+        <input type="password" id="ifrp" name="ifrpa" required >
+        
+    <br/>
+    <label>Afficher div</label>
+    <input type="radio" name="rb1" class="r1" id="r1" onchange="afficher()" /> Oui
+    <br/>
+    <input type="radio" name="rb1" class="r2" id="r2" onchange="Nonafficher()" /> Non
+    <div class="dg1" id="dg1">
+        <label>Choisir une ville</label>
+        <select id="s1">
+            <option value="0">Selectioner ville</option>
+            <option value="1"> Beni Mellal</option>
+            <option value="2"> Rabat</option>
+            <option value="3"> Casa</option>
+       
+        </select>
+    </div>
+    <div class="c1" id="d1">Avertissement</div>
+    <input type="button" value="Se connecter" onclick="verifier()">
+    <input type="reset"  value="Annuler">
+    </form>
+</body>
+</html>
